@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Checkbox, Form, Input, Flex, Typography, Image } from 'antd';
 import { LockOutlined, UnlockOutlined } from '@ant-design/icons';
+import Images from "./utils/Images";
 
-// import Images from "../utils/Images";
 // import { Link } from "react-router-dom";
 
 const { Title, Text } = Typography;
@@ -77,7 +77,7 @@ const App = () => {
         >
           <center>
             <Image
-              // src={Images.LogoLogin}
+              src={Images.LogoLogin}
               preview={false}
               style={{
                 marginTop: 10,
@@ -149,7 +149,7 @@ const App = () => {
         }}
       >
         <Image
-          // src={Images.Hat}
+          src={Images.Hat}
           preview={false}
           width={100}
           style={{
@@ -157,7 +157,7 @@ const App = () => {
           }}
         />
         <Image
-          // src={Images.TrafficCone}
+          src={Images.TrafficCone}
           preview={false}
           width={100}
           style={{
