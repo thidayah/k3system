@@ -1,7 +1,12 @@
+import { AppFooter, AppHeader } from "../components"
 
 const Dashboard = () => {
   return (
-    <div>Dashboard Page</div>
+    <>
+      <AppHeader />
+
+      <AppFooter />
+    </>
   )
 }
 
