@@ -5,7 +5,7 @@ import AppHeader from "./AppHeader"
 import AppSider from "./AppSider"
 
 interface TemplateProps {
-  title: string;
+  title?: string;
   isLayout?: boolean;
   children: ReactNode;
 }
