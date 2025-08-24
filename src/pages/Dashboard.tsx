@@ -14,7 +14,7 @@ import {
   Filler,
 } from 'chart.js';
 
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend, Filler);
 
@@ -87,6 +87,67 @@ const Dashboard = () => {
       },
     },
   };
+
+  const labelsBar = ['17', '18', '19', '20', '21', '22', '23'];
+  const dataBar = {
+    labels: labelsBar,
+    datasets: [
+      {
+        label: 'Base',
+        data: [10, 10, 10, 10, 10, 10, 10],
+        backgroundColor: '#7B61FF', // Purple
+        stack: 'stack1',
+        barThickness: 20
+
+      },
+      {
+        label: 'Middle',
+        data: [15, 15, 15, 15, 15, 15, 15],
+        backgroundColor: '#5BD3FF', // Cyan
+        stack: 'stack1',
+        barThickness: 20,
+      },
+      {
+        label: 'Top',
+        data: [10, 10, 10, 10, 10, 10, 10],
+        backgroundColor: '#E6F0FF', // Lightest
+        stack: 'stack1',
+        barThickness: 20,
+        borderRadius: 99
+      }
+    ],
+  };
+  const optionsBar = {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        enabled: true,
+        // callbacks: {
+        //   label: function(context) {
+        //     const label = context.dataset.label || '';
+        //     const value = context.parsed.y;
+        //     return `${label}: ${value}`;
+        //   }
+        // }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        grid: { display: false },
+        ticks: {
+          color: '#B0B8D9',
+          font: { size: 14 },
+        }
+      },
+      y: {
+        stacked: true,
+        display: false,
+      }
+    }
+  };
+  
   return (
     <Template isLayout={false}>
       <Flex
@@ -125,6 +186,29 @@ const Dashboard = () => {
             }}
           >
             <Line data={dataLine} options={optionsLine} />
+          </div>
+        </div>
+        <div style={{
+          width: '100%',
+          backgroundColor: 'white',
+          borderRadius: '4px',
+          padding: '24px',
+          // maxHeight: '450px'
+        }}>
+          <Flex justify={'space-between'} align={'center'}>
+            <Typography.Title level={3}>Weekly Revenue</Typography.Title>
+            <Button color="default" variant="filled" shape="circle">
+              <AlignRightOutlined style={{ color: '#f05a2f', rotate: '90deg' }} />
+            </Button>
+          </Flex>
+          <div
+            style={{
+              marginTop: '32px',
+              // minHeight: '200px',
+              maxHeight: '300px',
+            }}
+          >
+            <Bar data={dataBar} options={optionsBar} />
           </div>
         </div>
       </Flex>
