@@ -1,7 +1,7 @@
-import { Button, Flex, Typography } from "antd"
+import { Button, Flex, Progress, Table, Typography } from "antd"
 import { Template } from "../components"
 
-import { CalendarOutlined, AlignRightOutlined, CheckCircleFilled } from "@ant-design/icons"
+import { CalendarOutlined, AlignRightOutlined, CheckCircleFilled, EllipsisOutlined } from "@ant-design/icons"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -147,7 +147,68 @@ const Dashboard = () => {
       }
     }
   };
-  
+
+  const statusComponent = (status: string) => (
+    <Typography.Text strong>
+      {status}
+    </Typography.Text>
+  )
+
+  const columnsTable = [
+    {
+      title: 'NAME',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'STATUS',
+      dataIndex: 'status',
+      key: 'status',
+      render: (status: any) => statusComponent(status),
+    },
+    {
+      title: 'DATE',
+      dataIndex: 'date',
+      key: 'date',
+    },
+    {
+      title: 'PROGRESS',
+      dataIndex: 'progress',
+      key: 'progress',
+      render: (progress: number) => <Progress percent={progress} showInfo={false} strokeColor="#f05a2f" />
+    },
+  ];
+
+  const dataTable = [
+    {
+      key: '1',
+      name: 'John Brown',
+      date: '18 Apr 2021',
+      status: 'Approved',
+      progress: 20,
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      date: '20 Apr 2021',
+      status: 'Error',
+      progress: 75,
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      date: '12 Jun 2021',
+      status: 'Disable',
+      progress: 50,
+    }, {
+      key: '4',
+      name: 'Brown Jazz',
+      date: '11 Apr 2021',
+      status: 'Approved',
+      progress: 30,
+    },
+  ];
+
   return (
     <Template isLayout={false}>
       <Flex
@@ -210,6 +271,35 @@ const Dashboard = () => {
           >
             <Bar data={dataBar} options={optionsBar} />
           </div>
+        </div>
+      </Flex>
+      <Flex
+        gap={20}
+        style={{
+          padding: '8px 24px'
+        }}
+      >
+        <div style={{
+          width: '60%',
+          backgroundColor: 'white',
+          borderRadius: '4px',
+          // padding: '24px',
+          // height: '500px',
+        }}>
+          <Flex justify={'space-between'} align={'center'} style={{ padding: '24px', paddingBottom: '0px' }}>
+            <Typography.Title level={3}>Complex Table</Typography.Title>
+            <Button color="default" variant="filled" shape="circle">
+              <EllipsisOutlined style={{ color: '#f05a2f' }} />
+            </Button>
+          </Flex>
+          <Table
+            columns={columnsTable}
+            dataSource={dataTable}
+            pagination={{ position: ['none', 'none'] }}
+            style={{
+              marginTop: '12px'
+            }}
+          />
         </div>
       </Flex>
 
