@@ -1,7 +1,5 @@
 import { Button, Flex, Progress, Table, Typography } from "antd"
-import { Template } from "../components"
-
-import { CalendarOutlined, AlignRightOutlined, CheckCircleFilled, EllipsisOutlined } from "@ant-design/icons"
+import { CalendarOutlined, AlignRightOutlined, CheckCircleFilled, EllipsisOutlined, ExclamationCircleFilled, CloseCircleFilled } from "@ant-design/icons"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,8 +11,8 @@ import {
   Legend,
   Filler,
 } from 'chart.js';
-
 import { Line, Bar } from 'react-chartjs-2';
+import { Template } from "../components"
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend, Filler);
 
@@ -150,6 +148,12 @@ const Dashboard = () => {
 
   const statusComponent = (status: string) => (
     <Typography.Text strong>
+      {status === 'Approved' ?
+        <CheckCircleFilled style={{ marginRight: '6px', color: '#04cd99', fontSize: '16px' }} />
+        : status === 'Error' ?
+          <ExclamationCircleFilled style={{ marginRight: '6px', color: '#ffcd20', fontSize: '16px' }} />
+          : <CloseCircleFilled style={{ marginRight: '6px', color: '#ee5e50', fontSize: '16px' }} />
+      }
       {status}
     </Typography.Text>
   )
