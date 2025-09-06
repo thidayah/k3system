@@ -146,6 +146,20 @@ const Dashboard = () => {
     }
   };
 
+  const dataDailyTraffic = {
+    labels: labelsBar,
+    datasets: [
+      {
+        label: 'Base',
+        data: [7, 3, 10, 1, 9, 5, 5],
+        backgroundColor: '#f05a2f',
+        stack: 'stack1',
+        barThickness: 20,
+        borderRadius: 99
+      },
+    ],
+  };
+
   const statusComponent = (status: string) => (
     <Typography.Text strong>
       {status === 'Approved' ?
@@ -304,6 +318,28 @@ const Dashboard = () => {
               marginTop: '12px'
             }}
           />
+        </div>
+        <div style={{
+          width: '40%',
+          backgroundColor: 'white',
+          borderRadius: '4px',
+          padding: '24px',
+          // height: '500px',
+        }}>
+          <Flex justify={'space-between'} align={'center'}>
+            <Typography.Title level={5} style={{ color: '#a3add0' }}>Daily Traffic</Typography.Title>
+            <Typography.Text style={{ color: '#34C759' }}>+2.45%</Typography.Text>
+          </Flex>
+          <Typography.Title level={3} style={{ margin: 0 }}>2.579 <Typography.Text style={{ color: '#a3add0' }}>Visitors</Typography.Text></Typography.Title>
+          <div
+            style={{
+              marginTop: '32px',
+              // minHeight: '200px',
+              maxHeight: '300px',
+            }}
+          >
+            <Bar data={dataDailyTraffic} options={optionsBar} />
+          </div>
         </div>
       </Flex>
 
